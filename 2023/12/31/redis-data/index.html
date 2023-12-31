@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://niubility666666.github.io">
-  <title>Category: 微服务 | Hexo</title>
+  <title>Redis数据类型 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://niubility666666.github.io/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.html">
+  <meta name="description" content="一、Redis数据类型使用场景1. 两个小细节（1）命令不区分大小写，而 key 区分大小写。 （2）help @ 可以快速查看命令。  12345678910111213141516171819202122232425262728293031323334353637383940414243# 1: 命令不区分大小写，而 &#96;key&#96; 区分大小写127.0.0.1:6379[2]&gt; set k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis数据类型">
+<meta property="og:url" content="https://niubility666666.github.io/2023/12/31/redis-data/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、Redis数据类型使用场景1. 两个小细节（1）命令不区分大小写，而 key 区分大小写。 （2）help @ 可以快速查看命令。  12345678910111213141516171819202122232425262728293031323334353637383940414243# 1: 命令不区分大小写，而 &#96;key&#96; 区分大小写127.0.0.1:6379[2]&gt; set k">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210423203920971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JyaW5nb18=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210422164351324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JyaW5nb18=,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2023-12-31T10:07:03.000Z">
+<meta property="article:modified_time" content="2023-12-31T10:07:36.748Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210423203920971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JyaW5nb18=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -169,77 +176,463 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-redis-data" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/08/25/postName/" class="archive-article-date">
-  	<time datetime="2023-08-25T10:03:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/08/25/postName/">Spring Boot 入门</a>
+    <h1 class="article-title" itemprop="name">
+      Redis数据类型
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2023/12/31/redis-data/" class="archive-article-date">
+  	<time datetime="2023-12-31T10:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-31</time>
+</a>
+
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  字数统计:</span>
+        <!--这里样式可以自己定制-->
+        <span class="post-count" style="font-size: 14px;color: grey">4.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  阅读时长:</span>
+        <span class="post-count" style="font-size: 14px;color: grey">23分钟</span>
+      </span>
+    </span>
+</div>
           
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">IDEA</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        <!-- 添加完成 -->
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/微服务//" class="article-tag-list-link color4">微服务</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+
+        
+          <span class="archive-article-date">
+              阅读量：<span id="busuanzi_value_page_pv">
+          </span>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Redis数据类型使用场景"><a href="#一、Redis数据类型使用场景" class="headerlink" title="一、Redis数据类型使用场景"></a>一、Redis数据类型使用场景</h1><h2 id="1-两个小细节"><a href="#1-两个小细节" class="headerlink" title="1. 两个小细节"></a>1. 两个小细节</h2><p>（1）命令不区分大小写，而 <code>key</code> 区分大小写。</p>
+<p>（2）<code>help @</code> 可以快速查看命令。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: 命令不区分大小写，而 `key` 区分大小写</span></span><br><span class="line">127.0.0.1:6379[2]&gt; set k1 v1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[2]&gt; SET K1 v1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[2]&gt; KEYS *</span><br><span class="line">1) &quot;k1&quot;</span><br><span class="line">2) &quot;K1&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: <span class="built_in">help</span> @string 快速查看命令</span></span><br><span class="line">127.0.0.1:6379[2]&gt; help @string</span><br><span class="line"></span><br><span class="line">  APPEND key value</span><br><span class="line">  summary: Append a value to a key</span><br><span class="line">  since: 2.0.0</span><br><span class="line"></span><br><span class="line">  BITCOUNT key [start end]</span><br><span class="line">  summary: Count set bits in a string</span><br><span class="line">  since: 2.6.0</span><br><span class="line"></span><br><span class="line">  BITFIELD key [GET type offset] [SET type offset value] [INCRBY type offset increment] [OVERFLOW WRAP|SAT|FAIL]</span><br><span class="line">  summary: Perform arbitrary bitfield integer operations on strings</span><br><span class="line">  since: 3.2.0</span><br><span class="line"></span><br><span class="line">  BITOP operation destkey key [key ...]</span><br><span class="line">  summary: Perform bitwise operations between strings</span><br><span class="line">  since: 2.6.0</span><br><span class="line"></span><br><span class="line">  BITPOS key bit [start] [end]</span><br><span class="line">  summary: Find first bit set or clear in a string</span><br><span class="line">  since: 2.8.7</span><br><span class="line"></span><br><span class="line">  DECR key</span><br><span class="line">  summary: Decrement the integer value of a key by one</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  DECRBY key decrement</span><br><span class="line">  summary: Decrement the integer value of a key by the given number</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  GET key</span><br><span class="line">  summary: Get the value of a key</span><br><span class="line">  since: 1.0.0</span><br></pre></td></tr></table></figure>
 
 
+
+<h2 id="2-String-字符串"><a href="#2-String-字符串" class="headerlink" title="2. String(字符串)"></a>2. String(字符串)</h2><h3 id="2-1-常用命令"><a href="#2-1-常用命令" class="headerlink" title="2.1. 常用命令"></a>2.1. 常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: 最常用</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">SET key value</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">GET key</span> </span><br><span class="line">127.0.0.1:6379[2]&gt; SET k1 v1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[2]&gt; get k1</span><br><span class="line">&quot;v1&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: 同时设置/获取多个键值</span></span><br><span class="line">127.0.0.1:6379[2]&gt; MSET k1 v1 k2 v2 k3 v3</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[2]&gt; MGET k1 k2 k3</span><br><span class="line">1) &quot;v1&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: 数值增减</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.1: 递增数字</span></span><br><span class="line">INCR key</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.2: 增加指定的整数</span></span><br><span class="line">INCRBY key increment</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.3: 递减数值</span></span><br><span class="line">DECR key</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.4: 递减指定的整数</span></span><br><span class="line">DECRBY key decrement</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4. 获取字符串长度</span></span><br><span class="line">STRLEN key</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-分布式锁"><a href="#2-2-分布式锁" class="headerlink" title="2.2. 分布式锁"></a>2.2. 分布式锁</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: SETNX key value</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: SET key value [EX seconds|PX milliseconds] [NX|XX]</span></span><br><span class="line">127.0.0.1:6379[2]&gt; SET k1 v1 EX 10 NX</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[2]&gt; TTL k1</span><br><span class="line">(integer) 6</span><br><span class="line">127.0.0.1:6379[2]&gt; TTL k1</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379[2]&gt; TTL k1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379[2]&gt; TTL k1</span><br><span class="line">(integer) -2</span><br><span class="line">127.0.0.1:6379[2]&gt; KEYS *</span><br><span class="line">(empty array)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>EX</code>：key在多少秒后过期。</li>
+<li><code>PX</code>：key在多少毫秒后过期。</li>
+<li><code>NX</code>：当 key 不存在时，才创建key，效果等同于 SETNX。</li>
+<li><code>XX</code>：当 key 存在的时候，覆盖 key。</li>
+</ul>
+<h3 id="2-3-应用场景"><a href="#2-3-应用场景" class="headerlink" title="2.3. 应用场景"></a>2.3. 应用场景</h3><p>（1）商品编号、订单号采用 INCR 命令生成。</p>
+<p><strong>（2）喜欢&#x2F;踩的人数统计</strong>。</p>
+<h2 id="3-Hash-散列"><a href="#3-Hash-散列" class="headerlink" title="3. Hash(散列)"></a>3. Hash(散列)</h2><h3 id="3-1-Hash–-java"><a href="#3-1-Hash–-java" class="headerlink" title="3.1. Hash–&gt;java?"></a>3.1. Hash–&gt;java?</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Redis的Hash对应的就是 Java 中的Map</span></span><br><span class="line">Redis Hash ---&gt; Map&lt;String, Map&lt;Object, Object&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-2-常用命令"><a href="#3-2-常用命令" class="headerlink" title="3.2. 常用命令"></a>3.2. 常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1:HSET key field value [field value ...]</span></span><br><span class="line">127.0.0.1:6379[2]&gt; HSET person name zs age 18 score 98 </span><br><span class="line">(integer) 3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2:HGETALL key</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获得 key 中所有的属性和值</span></span><br><span class="line">127.0.0.1:6379[2]&gt; HGETALL person</span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;zs&quot;</span><br><span class="line">3) &quot;age&quot;</span><br><span class="line">4) &quot;18&quot;</span><br><span class="line">5) &quot;score&quot;</span><br><span class="line">6) &quot;98&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: HINCRBY key field increment</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Increment the <span class="built_in">integer</span> value of a <span class="built_in">hash</span> field by the given number</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-3-应用场景"><a href="#3-3-应用场景" class="headerlink" title="3.3. 应用场景"></a>3.3. 应用场景</h3><p><strong>（1）购物车、点餐、送快递 数量统计</strong>。</p>
+<img src="https://img-blog.csdnimg.cn/20210423203920971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JyaW5nb18=,size_16,color_FFFFFF,t_70" alt="image-20210421155946770" style="zoom:150%;" />
+
+
+
+
+
+<h2 id="4-List-列表"><a href="#4-List-列表" class="headerlink" title="4. List(列表)"></a>4. List(列表)</h2><h3 id="4-1-常用命令"><a href="#4-1-常用命令" class="headerlink" title="4.1. 常用命令"></a>4.1. 常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: LINDEX key index</span></span><br><span class="line">summary: Get an element from a list by its index</span><br><span class="line">since: 1.0.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: LINSERT key BEFORE|AFTER pivot element</span></span><br><span class="line">summary: Insert an element before or after another element in a list</span><br><span class="line">since: 2.2.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: LLEN key</span></span><br><span class="line">summary: Get the length of a list</span><br><span class="line">since: 1.0.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4: LPOP key</span></span><br><span class="line">summary: Remove and get the first element in a list</span><br><span class="line">since: 1.0.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5:LPUSH key element [element ...]</span></span><br><span class="line">summary: Prepend one or multiple elements to a list</span><br><span class="line">since: 1.0.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">6: LRANGE key start stop</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">LRANGE key start stop 表示遍历</span></span><br><span class="line">summary: Get a range of elements from a list</span><br><span class="line">since: 1.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-2-应用场景"><a href="#4-2-应用场景" class="headerlink" title="4.2. 应用场景"></a>4.2. 应用场景</h3><p><strong>（1）微信订阅文章推送</strong>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用户 1024 订阅的公众号, 推送了 35 66 77 号三篇文章</span></span><br><span class="line">127.0.0.1:6379[2]&gt; LPUSH like_article:uid:1024 35 66 77</span><br><span class="line">(integer) 3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将文章全部遍历出去。</span></span><br><span class="line">127.0.0.1:6379[2]&gt; LRANGE like_article:uid:1024 0 -1</span><br><span class="line">1) &quot;77&quot;</span><br><span class="line">2) &quot;66&quot;</span><br><span class="line">3) &quot;35&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-Set-无序不重复集合"><a href="#5-Set-无序不重复集合" class="headerlink" title="5. Set(无序不重复集合)"></a>5. Set(无序不重复集合)</h2><h3 id="5-1-常用命令"><a href="#5-1-常用命令" class="headerlink" title="5.1. 常用命令"></a>5.1. 常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Set中的值是无序的并且不能重复的！</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: 在Set集合中添加元素</span></span><br><span class="line">SADD key member [member ...]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: 删除Set集合中一个或多个元素</span></span><br><span class="line">SREM key member [member ...]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: 获取集合中的元素数</span></span><br><span class="line">SCARD key</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4: 获得集合中所有元素</span></span><br><span class="line">SMEMBERS key</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5: 集合运算</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5.1: 多个集合的差集</span></span><br><span class="line">SDIFF key [key ...]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5.2: 多个集合的交集</span></span><br><span class="line">SINTER key [key ...]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5.3: 多个集合的并集</span></span><br><span class="line">SUNION key [key ...]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">6: 随机移除并返回 1 个或多个</span></span><br><span class="line">SPOP key [count]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">7: 随机返回一个或多个(不会删除)</span></span><br><span class="line">SRANDMEMBER key [count]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-2-应用场景"><a href="#5-2-应用场景" class="headerlink" title="5.2. 应用场景"></a>5.2. 应用场景</h3><p><strong>（1）微信抽奖小程序</strong>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: 创建抽奖名字 chouj:10.1</span></span><br><span class="line">127.0.0.1:6379&gt; SADD chouj:10.1 uid:1 uid:2 uid:3 uid:4</span><br><span class="line">(integer) 4</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: 展示参加抽奖的人</span></span><br><span class="line">127.0.0.1:6379&gt; SMEMBERS chouj:10.1</span><br><span class="line">1) &quot;uid:2&quot;</span><br><span class="line">2) &quot;uid:4&quot;</span><br><span class="line">3) &quot;uid:3&quot;</span><br><span class="line">4) &quot;uid:1&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: 查询参加抽奖的总人数</span></span><br><span class="line">127.0.0.1:6379&gt; SCARD chouj:10.1</span><br><span class="line">(integer) 4</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4: 随机抽取两个人(会删除)</span></span><br><span class="line">127.0.0.1:6379&gt; SPOP chouj:10.1 2</span><br><span class="line">1) &quot;uid:3&quot;</span><br><span class="line">2) &quot;uid:1&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5: 随机抽取两个人(不会删除)</span></span><br><span class="line">127.0.0.1:6379&gt; SRANDMEMBER chouj:10.1 1</span><br><span class="line">1) &quot;uid:2&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>（2）微信朋友圈点赞</strong>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: 发布文章 id1 id2 id3 id4 id5 五个人点赞</span></span><br><span class="line">127.0.0.1:6379&gt; SADD pub:msgId:39 id1 id2 id3 id4 id5</span><br><span class="line">(integer) 5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: 5号用户取消了赞</span></span><br><span class="line">127.0.0.1:6379&gt; SREM pub:msgId:39 id5</span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: 查看谁点赞了</span></span><br><span class="line">127.0.0.1:6379&gt; SMEMBERS pub:msgId:39</span><br><span class="line">1) &quot;id4&quot;</span><br><span class="line">2) &quot;id3&quot;</span><br><span class="line">3) &quot;id1&quot;</span><br><span class="line">4) &quot;id2&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4: 点赞人数</span></span><br><span class="line">127.0.0.1:6379&gt; SCARD pub:msgId:39</span><br><span class="line">(integer) 4</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>（3）微博好友共同关注</strong>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: person1 关注了 p2 p3 p4 p5 p6</span></span><br><span class="line">127.0.0.1:6379&gt; SADD person1:focus p2 p3 p4 p5 p6</span><br><span class="line">(integer) 5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: person2 关注了 p5 p6 p7 p8</span></span><br><span class="line">127.0.0.1:6379&gt; SADD person2:focus p5 p6 p7 p8</span><br><span class="line">(integer) 4</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: person1 和 person2 共同关注？</span></span><br><span class="line">127.0.0.1:6379&gt; SINTER person1:focus person2:focus</span><br><span class="line">1) &quot;p6&quot;</span><br><span class="line">2) &quot;p5&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>（4）QQ内推可能认识的人</strong>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: s1 认识 1 2 3 4 5</span></span><br><span class="line">127.0.0.1:6379&gt; SADD s1 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: s2 认识 3 4 5 6 7 8</span></span><br><span class="line">127.0.0.1:6379&gt; SADD s2 3 4 5 6 7 8</span><br><span class="line">(integer) 6</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: s1 - s2 获得 s1 可能认识的人</span> </span><br><span class="line">127.0.0.1:6379&gt; SDIFF s1 s2</span><br><span class="line">1) &quot;1&quot;</span><br><span class="line">2) &quot;2&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4: s2 - s1 获得 s2 可能认识的人</span></span><br><span class="line">127.0.0.1:6379&gt; SDIFF s2 s1</span><br><span class="line">1) &quot;6&quot;</span><br><span class="line">2) &quot;7&quot;</span><br><span class="line">3) &quot;8&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-Zset-带分数的set"><a href="#6-Zset-带分数的set" class="headerlink" title="6. Zset(带分数的set)"></a>6. Zset(带分数的set)</h2><h3 id="6-1-常用命令"><a href="#6-1-常用命令" class="headerlink" title="6.1. 常用命令"></a>6.1. 常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: Add one or more members to a sorted <span class="built_in">set</span>, or update its score <span class="keyword">if</span> it already exists</span></span><br><span class="line">ZADD key [NX|XX] [CH] [INCR] score member [score member ...]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: 返回指定下标的 member</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ZRANGE key 0 -1 返回所有的 member</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Return a range of members <span class="keyword">in</span> a sorted <span class="built_in">set</span>, by index</span></span><br><span class="line">ZRANGE key start stop [WITHSCORES]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: Get the number of members <span class="keyword">in</span> a sorted <span class="built_in">set</span></span></span><br><span class="line">ZCARD key</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4: Count the members <span class="keyword">in</span> a sorted <span class="built_in">set</span> with scores within the given values</span></span><br><span class="line">ZCOUNT key min max</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5: Increment the score of a member <span class="keyword">in</span> a sorted <span class="built_in">set</span></span></span><br><span class="line">ZINCRBY key increment member</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">6: 求多个集合的交集并输出到 destination</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">WEIGHTS 每个集合的权重 要 × 这个权重</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">AGGREGATE 默认是 SUM 求和</span></span><br><span class="line">ZINTERSTORE destination numkeys key [key ...] [WEIGHTS weight] [AGGREGATE SUM|MIN|MAX]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>XX</strong>: 仅仅更新存在的成员，不添加新成员。</li>
+<li><strong>NX</strong>: 不存在就添加新成员。</li>
+<li><strong>CH</strong>: 返回多少个值被修改了。注: <code>ZADD</code>默认返回新添加元素的数量。</li>
+<li><strong>INCR</strong>: 当<code>ZADD</code>指定这个选项时，成员的操作就等同ZINCRBY命令，对成员的分数进行递增操作。</li>
+</ul>
+<h3 id="6-2-应用场景"><a href="#6-2-应用场景" class="headerlink" title="6.2. 应用场景"></a>6.2. 应用场景</h3><p><strong>（1）抖音、微博热搜</strong>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: 两条热搜</span></span><br><span class="line">127.0.0.1:6379&gt; ZADD hot 3000 aaaa 4000 bbb</span><br><span class="line">(integer) 2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: 从高到低排列</span></span><br><span class="line">127.0.0.1:6379&gt; ZREVRANGEBYSCORE hot +inf -inf WITHSCORES</span><br><span class="line">1) &quot;bbb&quot;</span><br><span class="line">2) &quot;4000&quot;</span><br><span class="line">3) &quot;aaaa&quot;</span><br><span class="line">4) &quot;3000&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="二、分布式锁"><a href="#二、分布式锁" class="headerlink" title="二、分布式锁"></a>二、分布式锁</h1><h2 id="1-搭建超卖程序"><a href="#1-搭建超卖程序" class="headerlink" title="1. 搭建超卖程序"></a>1. 搭建超卖程序</h2><h3 id="1-1-nginx安装和命令"><a href="#1-1-nginx安装和命令" class="headerlink" title="1.1. nginx安装和命令"></a>1.1. nginx安装和命令</h3><p>为了方便测试，该案例使用的是 <code>nginx/windows</code>。<a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">下载地址</a></p>
+<blockquote>
+<p>注意：</p>
+<ul>
+<li><code>windows/nginx</code> 下载之后是压缩包，无需安装，解压即可使用。</li>
+<li>使用 <code>windows/nginx</code> 需要到安装目录下，打开 cmd 窗口。</li>
+<li>配置文件位置 <code>conf/nginx.conf</code>。</li>
+</ul>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">nginx/window 命令</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1: 启动 nginx</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">建议使用第一种，第二种会使你的cmd窗口一直处于执行中，不能进行其他命令操作。</span> </span><br><span class="line">start nginx </span><br><span class="line">nginx.exe </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2: 停止 nginx</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop是快速停止nginx，可能并不保存相关信息；quit是完整有序的停止nginx，并保存相关信息。</span></span><br><span class="line">nginx -s stop </span><br><span class="line">nginx -s quit </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3: 重新载入 nginx</span></span><br><span class="line">nginx -s reload </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4: 查看 nginx 版本</span></span><br><span class="line">nginx -v</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-2-nginx负载均衡"><a href="#1-2-nginx负载均衡" class="headerlink" title="1.2. nginx负载均衡"></a>1.2. nginx负载均衡</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nginx.conf 配置文件</span></span><br><span class="line"></span><br><span class="line"><span class="string">http</span> &#123;</span><br><span class="line">	<span class="comment"># 负载均衡</span></span><br><span class="line">	<span class="comment"># 权重是 1, 轮询机制</span></span><br><span class="line">	<span class="comment"># 8081 和 8082 业务代码相同(使用 nginx 进行转发)</span></span><br><span class="line">    <span class="string">upstream</span> <span class="string">myserver</span> &#123;</span><br><span class="line">        <span class="string">server</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8081</span> <span class="string">weight=1;</span> </span><br><span class="line">        <span class="string">server</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8082</span> <span class="string">weight=1;</span></span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="string">server</span> &#123;</span><br><span class="line">        <span class="string">listen</span>       <span class="number">80</span><span class="string">;</span>			<span class="comment"># nginx监听 80 端口</span></span><br><span class="line">        <span class="string">server_name</span>  <span class="string">localhost;</span></span><br><span class="line">        <span class="string">location</span> <span class="string">/</span> &#123;</span><br><span class="line">            <span class="string">root</span>   <span class="string">html;</span></span><br><span class="line">            <span class="string">index</span>  <span class="string">index.html</span> <span class="string">index.htm;</span></span><br><span class="line">            <span class="string">proxy_pass</span> <span class="string">http://myserver;</span> <span class="comment"># nginx 反向代理</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-3-搭建应用"><a href="#1-3-搭建应用" class="headerlink" title="1.3. 搭建应用"></a>1.3. 搭建应用</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- pom.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- web --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- redis --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>service</code>:  com.ymy.boot.service.SaleService。</li>
+<li><code>controller</code>: com.ymy.boot.controller.SaleController。</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<p>8081 和 8082 代码完全一样，只是端口不一样， 以上路径只写一次代表两个应用！</p>
+</blockquote>
+<h3 id="1-4-Redis序列化配置"><a href="#1-4-Redis序列化配置" class="headerlink" title="1.4. Redis序列化配置"></a>1.4. Redis序列化配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Ringo</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/4/22 11:35</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> &#123;</span><br><span class="line"></span><br><span class="line">        RedisTemplate&lt;String, Object&gt; template = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1: 字符串序列化</span></span><br><span class="line">        <span class="type">StringRedisSerializer</span> <span class="variable">stringRedisSerializer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2: 对象序列化</span></span><br><span class="line">        Jackson2JsonRedisSerializer&lt;Object&gt; jackson2JsonRedisSerializer = <span class="keyword">new</span> <span class="title class_">Jackson2JsonRedisSerializer</span>&lt;&gt;(Object.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 解决 Java 8 LocalDateTime 不能反序列化问题</span></span><br><span class="line">        <span class="type">ObjectMapper</span> <span class="variable">om</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line">        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</span><br><span class="line">        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);</span><br><span class="line">        om.registerModule(<span class="keyword">new</span> <span class="title class_">JavaTimeModule</span>());</span><br><span class="line">        jackson2JsonRedisSerializer.setObjectMapper(om);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3: 设置 string key value hashKey hashValue 的序列化器</span></span><br><span class="line">        template.setStringSerializer(stringRedisSerializer);</span><br><span class="line">        template.setKeySerializer(stringRedisSerializer);</span><br><span class="line">        template.setValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        template.setHashKeySerializer(stringRedisSerializer);</span><br><span class="line">        template.setHashValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        <span class="keyword">return</span> template;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-5-多线程压测工具"><a href="#1-5-多线程压测工具" class="headerlink" title="1.5. 多线程压测工具"></a>1.5. 多线程压测工具</h3><p><a target="_blank" rel="noopener" href="https://jmeter.apache.org/download_jmeter.cgi">jmeter下载地址</a></p>
+<h2 id="2-分布式锁的演变"><a href="#2-分布式锁的演变" class="headerlink" title="2. 分布式锁的演变"></a>2. 分布式锁的演变</h2><h3 id="2-1-单机版加锁v1-0"><a href="#2-1-单机版加锁v1-0" class="headerlink" title="2.1. 单机版加锁v1.0"></a>2.1. 单机版加锁v1.0</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单机版我们的业务</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/sale&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">saleShop</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> saleService.sale(); <span class="comment">// 业务代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>单机版业务出现的问题？</p>
+<p><strong>单机版没有加锁</strong>。</p>
+<p>多个线程并发的访问同一个资源类，没有任何控制手段不能保证数据的一致性。</p>
+<p>那么加锁 synchronized 还是 ReentrantLock？？？？？</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java.util.concurrent.locks.Lock 中有 tryLock() 方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 用法</span></span><br><span class="line"><span class="comment">Lock lock = ...; </span></span><br><span class="line"><span class="comment">if (lock.tryLock()) &#123; </span></span><br><span class="line"><span class="comment">    try &#123; </span></span><br><span class="line"><span class="comment">        // manipulate protected state </span></span><br><span class="line"><span class="comment">    &#125; finally &#123; </span></span><br><span class="line"><span class="comment">        lock.unlock(); </span></span><br><span class="line"><span class="comment">    &#125; </span></span><br><span class="line"><span class="comment">&#125; else &#123; </span></span><br><span class="line"><span class="comment">    // perform alternative actions </span></span><br><span class="line"><span class="comment">&#125; </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Lock</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">tryLock</span><span class="params">(<span class="type">long</span> time, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>单机版加锁改进代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v1.0 单机版没有加锁 synchronized</span></span><br><span class="line"><span class="comment">// 高并发下, synchronized 会发生死等, 线程的阻塞和拥堵</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/sale&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">saleShop</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> saleService.sale();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// v1.1. 单机版没有加锁 ReentrantLock</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line"></span><br><span class="line"><span class="meta">@GetMapping(&quot;/sale&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">saleShop</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 带有超时时间了！</span></span><br><span class="line">    <span class="keyword">if</span> (lock.tryLock(<span class="number">3L</span>, TimeUnit.SECONDS)) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> saleService.sale();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="string">&quot;没有抢到锁, 稍后再试&quot;</span>;</span><br><span class="line">        System.out.println(msg);</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-分布式架构v2-0"><a href="#2-2-分布式架构v2-0" class="headerlink" title="2.2. 分布式架构v2.0"></a>2.2. 分布式架构v2.0</h3><p><img src="https://img-blog.csdnimg.cn/20210422164351324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JyaW5nb18=,size_16,color_FFFFFF,t_70" alt="分布式架构"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">REDIS_LOCK</span> <span class="operator">=</span> <span class="string">&quot;REDIS_LOCK&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// v2.0 单机锁不能解决分布式项目数据一致性问题: 分布式锁</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/sale&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">saleShop</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">current</span> <span class="operator">=</span> UUID.randomUUID().toString() + Thread.currentThread().getName();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// setNX</span></span><br><span class="line">    <span class="type">Boolean</span> <span class="variable">flag</span> <span class="operator">=</span> redisTemplate.opsForValue().setIfAbsent(REDIS_LOCK, current); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;没有抢到锁!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;没有抢到锁!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> saleService.sale();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        redisTemplate.delete(REDIS_LOCK);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>当前问题：</p>
+<p>这样设置的 REDIS_LOCK 默认是用不过期的，除非要求 redisTemplate.delete(REDIS_LOCK);</p>
+<p>如果当前服务器挂了，那么永远都无法删除 REDIS_LOCK 。</p>
+<p>因此，需要为 REDIS_LOCK  设置过期时间。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意: 加锁 和 设置过期时间必须是原子操作！</span></span><br><span class="line"><span class="type">Boolean</span> <span class="variable">flag</span> <span class="operator">=</span> </span><br><span class="line">    redisTemplate.opsForValue()</span><br><span class="line">    .setIfAbsent(REDIS_LOCK, current, <span class="number">10L</span>,TimeUnit.SECONDS); <span class="comment">// setNX</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-释放锁-lua-v3-0"><a href="#2-3-释放锁-lua-v3-0" class="headerlink" title="2.3. 释放锁(lua)v3.0"></a>2.3. 释放锁(lua)v3.0</h3><p><code>redisTemplate.delete(REDIS_LOCK);</code> 只能释放自己的锁，不能动别人的锁！</p>
+<p>这里不能直接释放锁。</p>
+<p><strong>注意：判断和释放锁也必须是原子操作，不能被打断</strong>！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解决办法: Redis 事务、Watch乐观锁机制。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Redis 单个命令都是原子性的。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Redis事务是 命令集合连续且不被打断。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Redis 不支持回滚的操作。</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、Redis事务特性</span></span><br><span class="line">127.0.0.1:6379[3]&gt; MULTI # 开启事务</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt; SET k1 v111</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379[3]&gt; SET k2 v222</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在执行 EXEC之前, 如果 k1 k2被其他线程修改了</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; EXEC # 执行事务</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">EXEC 执行完之后，可以覆盖其他线程的修改！</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、watch 乐观锁机制</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; WATCH k1 k2 # watch 监控</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt; MULTI </span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt; SET k1 v111</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379[3]&gt; SET k2 v222</span><br><span class="line">QUEUED</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在执行 EXEC之前, 如果 k1 k2被其他线程修改了</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; EXEC</span><br><span class="line">(nil)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">EXEC 执行返回 (nil) 没有成功！不会去覆盖其他线程的操作</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>使用 lua 脚本删除Key, 释放锁</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://redis.io/commands/set%E3%80%82">https://redis.io/commands/set。</a></p>
+<h3 id="2-4-Redisson-v4-0"><a href="#2-4-Redisson-v4-0" class="headerlink" title="2.4. Redisson v4.0"></a>2.4. Redisson v4.0</h3><blockquote>
+<p>如何保证锁的过期时间大于业务的执行时间？</p>
+<p>这个过期时间不能写死，需要动态变化的！</p>
+<p>Redis 有集群模式，分布式锁加在 Redis master，如果 master 没有同步到 slaver 但是 master挂了？那怎么办？锁就会丢失了！</p>
+<p>解决方案：<a target="_blank" rel="noopener" href="https://github.com/redisson/redisson">Redisson</a></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- pom 依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.redisson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>redisson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.15.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Redisson 配置</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Redisson <span class="title function_">redisson</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Config</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Config</span>();</span><br><span class="line">    <span class="comment">// 集群: config.useClusterServers().addNodeAddress(&quot;redis://127.0.0.1:7181&quot;);</span></span><br><span class="line">    config.useSingleServer().setAddress(<span class="string">&quot;redis://39.97.3.60:6379&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> (Redisson) Redisson.create(config);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Redis 锁</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">REDIS_LOCK</span> <span class="operator">=</span> <span class="string">&quot;REDIS_LOCK&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最终解决方案 分布式锁 Redisson</span></span><br><span class="line"><span class="meta">@Resource</span></span><br><span class="line"><span class="keyword">private</span> Redisson redisson;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Resource</span></span><br><span class="line"><span class="keyword">private</span> Redisson redisson;</span><br><span class="line"></span><br><span class="line"><span class="meta">@GetMapping(&quot;/sale&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">saleShop</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">RLock</span> <span class="variable">lock</span> <span class="operator">=</span> redisson.getLock(REDIS_LOCK);</span><br><span class="line">    lock.lock();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> saleService.sale();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (lock.isHeldByCurrentThread()) <span class="comment">// 注意细节</span></span><br><span class="line">            lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="三、Redis内存"><a href="#三、Redis内存" class="headerlink" title="三、Redis内存"></a>三、Redis内存</h1><h2 id="1-设置Redis内存"><a href="#1-设置Redis内存" class="headerlink" title="1. 设置Redis内存"></a>1. 设置Redis内存</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># redis.conf</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 这个就是 Redis 占用最大内存的配置</span></span><br><span class="line"><span class="comment"># 设置 maxmemory 单位是字节，需要注意单位的转换</span></span><br><span class="line"><span class="comment"># maxmemory &lt;bytes&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果不设置最大内存大小或者设置最大内存为0， 在64位操作系统下不限制内存大小，在32位操作系统下最多使用3GB内存。</p>
+<p><strong>一般生产上如何配置最大内存</strong>？</p>
+<p>一般推荐Redis设置内存为最大物理内存的四分之三。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 redis 最大内存</span></span><br><span class="line">127.0.0.1:6379&gt; CONFIG GET maxmemory</span><br><span class="line">1) &quot;maxmemory&quot;</span><br><span class="line">2) &quot;0&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">通过命令: 设置 redis 最大内存</span></span><br><span class="line">127.0.0.1:6379&gt; CONFIG SET maxmemory 10 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 redis 使用的内存</span></span><br><span class="line">127.0.0.1:6379&gt; info memory  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Memory</span></span><br><span class="line">used_memory:951600</span><br><span class="line">used_memory_human:929.30K</span><br><span class="line">used_memory_rss:10690560</span><br><span class="line">used_memory_rss_human:10.20M</span><br><span class="line">used_memory_peak:403604704</span><br><span class="line">used_memory_peak_human:384.91M</span><br><span class="line">used_memory_peak_perc:0.24%</span><br><span class="line">used_memory_overhead:888762</span><br><span class="line">used_memory_startup:802952</span><br><span class="line">used_memory_dataset:62838</span><br><span class="line">used_memory_dataset_perc:42.27%</span><br><span class="line">allocator_allocated:1017656</span><br><span class="line">allocator_active:1310720</span><br><span class="line">allocator_resident:3584000</span><br><span class="line">total_system_memory:1928933376</span><br><span class="line">total_system_memory_human:1.80G</span><br><span class="line">used_memory_lua:38912</span><br><span class="line">used_memory_lua_human:38.00K</span><br><span class="line">used_memory_scripts:880</span><br><span class="line">used_memory_scripts_human:880B</span><br><span class="line">number_of_cached_scripts:2</span><br><span class="line">maxmemory:0</span><br><span class="line">maxmemory_human:0B</span><br><span class="line">maxmemory_policy:noeviction</span><br><span class="line">allocator_frag_ratio:1.29</span><br><span class="line">allocator_frag_bytes:293064</span><br><span class="line">allocator_rss_ratio:2.73</span><br><span class="line">allocator_rss_bytes:2273280</span><br><span class="line">rss_overhead_ratio:2.98</span><br><span class="line">rss_overhead_bytes:7106560</span><br><span class="line">mem_fragmentation_ratio:11.74</span><br><span class="line">mem_fragmentation_bytes:9779968</span><br><span class="line">mem_not_counted_for_evict:0</span><br><span class="line">mem_replication_backlog:0</span><br><span class="line">mem_clients_slaves:0</span><br><span class="line">mem_clients_normal:84930</span><br><span class="line">mem_aof_buffer:0</span><br><span class="line">mem_allocator:jemalloc-5.1.0</span><br><span class="line">active_defrag_running:0</span><br><span class="line">lazyfree_pending_objects:0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-Redis内存打满OOM"><a href="#2-Redis内存打满OOM" class="headerlink" title="2. Redis内存打满OOM"></a>2. Redis内存打满OOM</h2><h2 id="3-内存淘汰策略"><a href="#3-内存淘汰策略" class="headerlink" title="3. 内存淘汰策略"></a>3. 内存淘汰策略</h2><h3 id="3-1-3种key删除策略"><a href="#3-1-3种key删除策略" class="headerlink" title="3.1. 3种key删除策略"></a>3.1. 3种key删除策略</h3><p>如果一个 key 是过期的，那它到了过期时间之后是不是马上就从内存中删除？</p>
+<p>答案是否定的，Redis有三种不同的过期 key 删除策略。</p>
+<p><strong>删除策略</strong>：</p>
+<ul>
+<li>立即删除：立即删除能保证内存中数据的最大新鲜度，key 过期后立马会被删除，其所占的内存就会被释放。但是，当CPU忙的时候，就会给CPU造成额外的压力（对CPU不友好，拿时间换空间）。</li>
+<li>惰性删除：数据到达过期时间，不做处理，等下次访问该数据时，如果未过期，返回数据，发现已经过期，删除，返回不存在（对内存不友好，用空间换时间）。</li>
+<li>定期删除：定期删除是对以上两种删除策略的折中。<strong>定期删除策略每隔一段时间执行一次删除过期 key 操作</strong>，并通过限制删除操作执行的时常和频率来减少删除操作对CPU时间的影响（定期抽样key，判断是否过期，但是抽查还是有落网之鱼）！</li>
+</ul>
+<h3 id="3-2-Redis内存淘汰策略"><a href="#3-2-Redis内存淘汰策略" class="headerlink" title="3.2. Redis内存淘汰策略"></a>3.2. Redis内存淘汰策略</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># redis.conf </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># redis 的内存淘汰策略, 以下 8 选 1</span></span><br><span class="line"><span class="comment"># MAXMEMORY POLICY: how Redis will select what to remove when maxmemory</span></span><br><span class="line"><span class="comment"># is reached. You can select one from the following behaviors:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 1: 对所有设置了过期时间的 key 使用 LRU 算法进行删除 </span></span><br><span class="line"><span class="comment"># volatile-lru -&gt; Evict using approximated LRU, only keys with an expire set.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 2: 对所有的 key 使用 LRU 算法进行删除</span></span><br><span class="line"><span class="comment"># allkeys-lru -&gt; Evict any key using approximated LRU.</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 3: 对所有设置了过期时间的 key 使用 LFU 算法进行删除</span></span><br><span class="line"><span class="comment"># volatile-lfu -&gt; Evict using approximated LFU, only keys with an expire set.</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 4: 对所有的 key 使用 LUF 算法进行删除</span></span><br><span class="line"><span class="comment"># allkeys-lfu -&gt; Evict any key using approximated LFU.</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 5: 对所有设置了过期时间的 key 随机删除</span></span><br><span class="line"><span class="comment"># volatile-random -&gt; Remove a random key having an expire set.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 6: 对所有的 key 随机删除</span></span><br><span class="line"><span class="comment"># allkeys-random -&gt; Remove a random key, any key.</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 7: 删除马上要过期的 key</span></span><br><span class="line"><span class="comment"># volatile-ttl -&gt; Remove the key with the nearest expire time (minor TTL)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 8: 默认、不会删除任何 key</span></span><br><span class="line"><span class="comment"># noeviction -&gt; Don&#x27;t evict anything, just return an error on write operations.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># LRU means Least Recently Used</span></span><br><span class="line"><span class="comment"># LFU means Least Frequently Used</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Both LRU, LFU and volatile-ttl are implemented using approximated</span></span><br><span class="line"><span class="comment"># randomized algorithms.</span></span><br><span class="line"><span class="comment"># The default is:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># maxmemory-policy noeviction</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">命令查看 Redis 内存淘汰策略</span></span><br><span class="line">127.0.0.1:6379&gt; CONFIG GET maxmemory-policy</span><br><span class="line">1) &quot;maxmemory-policy&quot;</span><br><span class="line">2) &quot;noeviction&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">命令设置 Redis 内存淘汰策略</span></span><br><span class="line">127.0.0.1:6379&gt; CONFIG SET maxmemory-policy allkeys-lru</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; CONFIG GET maxmemory-policy</span><br><span class="line">1) &quot;maxmemory-policy&quot;</span><br><span class="line">2) &quot;allkeys-lru&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-LRU算法"><a href="#4-LRU算法" class="headerlink" title="4. LRU算法"></a>4. LRU算法</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">leetcode-LRU算法</a></p>
+<p><a target="_blank" rel="noopener" href="https://hestyle.blog.csdn.net/article/details/105559156">LinkedHashMap</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lyhc/p/10743550.html">LinkedHashMap复用了HashMap的put()为什么插入后还能保证有序?</a></p>
+<h3 id="4-1-LinkedHashMap"><a href="#4-1-LinkedHashMap" class="headerlink" title="4.1. LinkedHashMap"></a>4.1. LinkedHashMap</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试代码: </span></span><br><span class="line">LinkedHashMap&lt;String, Object&gt; linkedHashMap = </span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;&gt;(<span class="number">10</span>, <span class="number">0.75f</span>, <span class="literal">true</span>);</span><br><span class="line">linkedHashMap.put(<span class="string">&quot;a&quot;</span>, <span class="number">1</span>);</span><br><span class="line">linkedHashMap.put(<span class="string">&quot;b&quot;</span>, <span class="number">2</span>);</span><br><span class="line">linkedHashMap.put(<span class="string">&quot;c&quot;</span>, <span class="number">3</span>);</span><br><span class="line">linkedHashMap.get(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">linkedHashMap.get(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">linkedHashMap.forEach((k, v) -&gt; System.out.println(k + <span class="string">&quot; &quot;</span> + v));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出结果: </span></span><br><span class="line">c <span class="number">3</span></span><br><span class="line">b <span class="number">2</span></span><br><span class="line">a <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LinkedHashMap 构造方法</span></span><br><span class="line"><span class="comment">// accessOrder = true 的作用是调用get()方法是会将查找到的节点放入尾部！</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">LinkedHashMap</span><span class="params">(<span class="type">int</span> initialCapacity,</span></span><br><span class="line"><span class="params">                     <span class="type">float</span> loadFactor,</span></span><br><span class="line"><span class="params">                     <span class="type">boolean</span> accessOrder)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(initialCapacity, loadFactor);</span><br><span class="line">    <span class="built_in">this</span>.accessOrder = accessOrder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-2-LRUCache"><a href="#4-2-LRUCache" class="headerlink" title="4.2. LRUCache"></a>4.2. LRUCache</h3><p>以下是使用 LinkedHashMap 实现的一个 LRU 缓存：</p>
+<ul>
+<li>设定最大缓存空间 maxEntries；</li>
+<li>使用 LinkedHashMap 的构造函数将 accessOrder 设置为 true，开启 LRU 顺序；</li>
+<li>覆盖 removeEldestEntry() 方法实现，在节点多于 MAX_ENTRIES 就会将最近最久未使用的数据移除。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LRUCache</span>&lt;K, V&gt; <span class="keyword">extends</span> <span class="title class_">LinkedHashMap</span>&lt;K, V&gt; &#123;</span><br><span class="line">    <span class="comment">// 最大 k-v 键值对的数量(最大缓存数)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> maxEntries;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LRUCache</span><span class="params">(<span class="type">int</span> maxEntries)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(maxEntries, <span class="number">0.75f</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="built_in">this</span>.maxEntries = maxEntries;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">removeEldestEntry</span><span class="params">(Map.Entry&lt;K, V&gt; eldest)</span> &#123;</span><br><span class="line">        <span class="comment">// size(): 返回 k-v 键值对的数量</span></span><br><span class="line">        <span class="keyword">return</span> size() &gt; maxEntries;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        LRUCache&lt;String, Object&gt; lruCache = <span class="keyword">new</span> <span class="title class_">LRUCache</span>&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        lruCache.put(<span class="string">&quot;a&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        lruCache.put(<span class="string">&quot;b&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        lruCache.put(<span class="string">&quot;c&quot;</span>, <span class="number">3</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot; -- 初始化 -- &quot;</span>);</span><br><span class="line">        lruCache.forEach((k, v) -&gt; System.out.println(k + <span class="string">&quot; &quot;</span> + v));</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot; -- get(a) -- &quot;</span>);</span><br><span class="line">        lruCache.get(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">        lruCache.forEach((k, v) -&gt; System.out.println(k + <span class="string">&quot; &quot;</span> + v));</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot; -- put(d, 4) -- &quot;</span>);</span><br><span class="line">        lruCache.put(<span class="string">&quot;d&quot;</span>, <span class="number">4</span>);</span><br><span class="line">        lruCache.forEach((k, v) -&gt; System.out.println(k + <span class="string">&quot; &quot;</span> + v));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出结果</span></span><br><span class="line"> -- 初始化 -- </span><br><span class="line">a <span class="number">1</span></span><br><span class="line">b <span class="number">2</span></span><br><span class="line">c <span class="number">3</span></span><br><span class="line"> -- get(a) -- </span><br><span class="line">b <span class="number">2</span></span><br><span class="line">c <span class="number">3</span></span><br><span class="line">a <span class="number">1</span></span><br><span class="line"> -- put(d, <span class="number">4</span>) -- </span><br><span class="line">c <span class="number">3</span></span><br><span class="line">a <span class="number">1</span></span><br><span class="line">d <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+		<!-- 增加版权声明 -->
+		<!- 百度自动推送方式提交 -->
+		
+		  <script>
+		  (function(){
+			  var bp = document.createElement('script');
+			  var curProtocol = window.location.protocol.split(':')[0];
+			  if (curProtocol === 'https') {
+				  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+			  }
+			  else {
+				  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+			  }
+			  var s = document.getElementsByTagName("script")[0];
+			  s.parentNode.insertBefore(bp, s);
+		  })();
+		  </script>
+		
+		<!- 百度自动推送方式提交结束 -->
+		
+		
+		  <div class="declare" hidden="hidden"></div>
+		
+
+		<!-- 增加版权声明结束 -->
+		
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/df2c791f43ff3a78305a3e68304887f.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/122b7bd402aab0c69f13644a624b347.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://niubility666666.github.io/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2023/12/31/jvm-cpu-usage-rate/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java进程CPU使用率高排查</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
           </div>
         </div>
       </div>
@@ -273,10 +666,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
