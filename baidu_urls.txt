@@ -1,3 +1,4 @@
+https://niubility666666.github.io/2023/12/31/kafka-start/
 https://niubility666666.github.io/2023/12/31/redis-data/
 https://niubility666666.github.io/2023/12/31/jvm-cpu-usage-rate/
 https://niubility666666.github.io/2023/12/31/jvm-performance-review/
