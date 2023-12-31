@@ -1,1 +1,5 @@
+https://niubility666666.github.io/2023/12/31/jvm-cpu-usage-rate/
+https://niubility666666.github.io/2023/12/31/jvm-performance-review/
+https://niubility666666.github.io/2023/12/31/jvm-collection/
+https://niubility666666.github.io/2023/12/31/jvm-memory-allocation/
 https://niubility666666.github.io/2023/08/25/postName/

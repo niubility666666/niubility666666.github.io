@@ -64,7 +64,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 1
+			总文章数 5
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -1501,6 +1501,806 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/08/25/postName/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-jvm-cpu-usage-rate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/31/jvm-cpu-usage-rate/">Java进程CPU使用率高排查</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/31/jvm-cpu-usage-rate/" class="archive-article-date">
+  	<time datetime="2023-12-31T09:57:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-31</time>
+</a>
+
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  字数统计:</span>
+        <!--这里样式可以自己定制-->
+        <span class="post-count" style="font-size: 14px;color: grey">192字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  阅读时长:</span>
+        <span class="post-count" style="font-size: 14px;color: grey">1分钟</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+
+        
+
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#Java进程CPU使用率高排查<br>    在生产java应用，CPU使用率一直很高，经常达到100%。让开发束手无策，最后经常是运维背锅，其实，有可能是开发代码逻辑有问题，甚至写了死循环~</p>
+<p>##排查思路：</p>
+<ul>
+<li>1 jps获取java进程的pid</li>
+<li>2 jstack pid &gt;&gt;java.txt 导出CPU占用高进程的线程栈</li>
+<li>3 top -H -p pid 查看对应的进程的哪个线程占用的CPU较高</li>
+<li>4 echo “obase&#x3D;16;PID”|bc  将线程的PID转换为16进制</li>
+<li>5 在第二步导出的java.txt中查找转换为16进制的线程PID。找到对应的线程栈</li>
+<li>6 分析负载高的线程栈都是什么业务操作。优化程序并处理问题</li>
+</ul>
+
+      
+		<!-- 增加版权声明 -->
+		<!- 百度自动推送方式提交 -->
+		
+		  <script>
+		  (function(){
+			  var bp = document.createElement('script');
+			  var curProtocol = window.location.protocol.split(':')[0];
+			  if (curProtocol === 'https') {
+				  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+			  }
+			  else {
+				  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+			  }
+			  var s = document.getElementsByTagName("script")[0];
+			  s.parentNode.insertBefore(bp, s);
+		  })();
+		  </script>
+		
+		<!- 百度自动推送方式提交结束 -->
+		
+		
+		  <div class="declare" hidden="hidden"></div>
+		
+
+		<!-- 增加版权声明结束 -->
+		
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/31/jvm-cpu-usage-rate/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-jvm-performance-review" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/31/jvm-performance-review/">JVM性能查看工具</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/31/jvm-performance-review/" class="archive-article-date">
+  	<time datetime="2023-12-31T09:57:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-31</time>
+</a>
+
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  字数统计:</span>
+        <!--这里样式可以自己定制-->
+        <span class="post-count" style="font-size: 14px;color: grey">1.2k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  阅读时长:</span>
+        <span class="post-count" style="font-size: 14px;color: grey">6分钟</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+
+        
+
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#JVM性能查看工具<br>##1.jstat<br>    作用：利用jvm内建的指令对java应用程序的资源和性能进行实时的命令行监控，包括针对heap size和垃圾回收情况的监控。<br>    用法： jstat [option] pid<br>    option:	<br>        -class:统计class loader行为信息<br>        -compile：统计编译行为信息<br>        -gc：统计jdk gc时heap信息<br>        -gccapacity：统计不同的generations（包括新生区，老年区，permanent区）相应的heap容量情况<br>        -gccause：统计gc的情况，（同-gcutil）和引起gc的事件<br>        -gcnew：统计gc时，新生代的情况<br>        -gcnewcapacity：统计gc时，新生代heap容量<br>        -gcold：统计gc时，老年区的情况<br>        -gcoldcapacity：统计gc时，老年区heap容量<br>        -gcpermcapacity：统计gc时，permanent区heap容量<br>        -gcutil：统计gc时，heap情况</p>
+<h3 id="gc"><a href="#gc" class="headerlink" title="-gc"></a>-gc</h3><pre><code>[root@wangxu-180 bin]# jstat -gc 21371  1000 2  #&lt;=间隔为1s，重复出现两次~
+ S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT   
+10240.0 10240.0 9303.5  0.0   81920.0  45348.6   159744.0   56841.3   37888.0 36902.9 4608.0 4349.1     14    0.735   1      0.004    0.740
+10240.0 10240.0 9303.5  0.0   81920.0  45348.6   159744.0   56841.3   37888.0 36902.9 4608.0 4349.1     14    0.735   1      0.004    0.740
+参数含义：
+S0C:年轻代的第一个survicor(幸存区)的容量(字节)
+S1C:年轻代的第二个survicor(幸存区)的容量(字节)
+S0U:年轻代的第一个survicor(幸存区)已经使用的空间(字节)
+S1U:年轻代的第二个survicor(幸存区)已经使用的空间(字节)
+EC:年轻代中的Eden(伊甸园)的容量
+EU:年轻代中的Een(伊甸园)已经使用的容量
+ OC:年老代的容量
+OU:年老代已经使用的空间
+MC:metadata的容量
+MU:metadata已经使用的空间
+CCSC:压缩类空间的大小
+CCSU:压缩类空间的使用大小
+YG:从应用程序启动到采样时年轻代中gc次数
+YGCT:从应用程序启动到采样时年轻代中gc所用时间(s)
+FGC:从应用程序启动到采样时年老代gc次数
+FGCT:从应用程序启动到采样时年老代(全gc)gc所用时间(s)
+GC:	从应用程序启动到采样时gc用的总时间(s)
+</code></pre>
+<p>##2.jmap<br>    作用：查看jvm的内存分配情况<br>    用法：jmap [option] pid</p>
+<ul>
+<li><p>heap：打印堆的内存信息</p>
+</li>
+<li><p>dump：</p>
+<pre><code>  [root@iauth02 java_bin]# jmap -heap 12249
+  Attaching to process ID 12249, please wait...
+  Debugger attached successfully.
+  Server compiler detected.
+  JVM version is 25.77-b03
+
+  using thread-local object allocation.
+  Parallel GC with 2 thread(s)
+
+  Heap Configuration:  #堆内存初始化设置
+    MinHeapFreeRatio         = 0		#&lt;= -XX:MinHeapFreeRatio=设置JVM堆最小空闲比率
+     MaxHeapFreeRatio         = 100     #&lt;= -XX:MaxHeapFreeRatio=设置JVM堆最大空闲比率
+    MaxHeapSize              = 1006632960 (960.0MB)  #&lt;=-XX:MaxHeapSize=JVM堆最大内存大小
+      NewSize                  = 20971520 (20.0MB)     #&lt;= -XX:NewSize=设置JVM堆新生代内存的默认大小
+     MaxNewSize               = 335544320 (320.0MB)   #&lt;= -XX:MaxNewSize=设置JVM堆新生代内存的最大大小
+     OldSize                  = 41943040 (40.0MB)     #&lt;= -XX:OldSize=设置JVM堆的老年代大小
+     NewRatio                 = 2					  #&lt;= -XX:NewRatio=:新生代和老生代的大小比率
+     SurvivorRatio            = 8					  #&lt;= -XX:SurvivorRatio=设置年轻代中Eden区与Survivor区的大小比值 
+     MetaspaceSize            = 21807104 (20.796875MB) #&lt;= -XX:MetaspaceSize= 设置元空间的初始大小
+     CompressedClassSpaceSize = 1073741824 (1024.0MB)
+     MaxMetaspaceSize         = 17592186044415 MB      #&lt;= -XX:MetaspaceSize= 设置元空间的最大大小
+     G1HeapRegionSize         = 0 (0.0MB)
+
+  Heap Usage:
+  PS Young Generation
+  Eden Space:            #&lt;=eden区内存分布
+     capacity = 202375168 (193.0MB)
+    used     = 164582424 (156.9580307006836MB)
+   free     = 37792744 (36.041969299316406MB)
+     81.32540450812621% used
+  From Space:            #&lt;=survivor0区内存分布
+    capacity = 2097152 (2.0MB)
+    used     = 1676768 (1.599090576171875MB)
+    free     = 420384 (0.400909423828125MB)
+    79.95452880859375% used
+  To Space:			  #&lt;=survivor1区内存分布
+     capacity = 2097152 (2.0MB)
+     used     = 0 (0.0MB)
+     free     = 2097152 (2.0MB)
+     0.0% used
+  PS Old Generation     #&lt;=老生代区内存分布
+     capacity = 186646528 (178.0MB)
+     used     = 112483992 (107.2730941772461MB)
+     free     = 74162536 (70.7269058227539MB)
+     60.265783245643874% used
+
+      30512 interned Strings occupying 3600128 bytes.
+</code></pre>
+</li>
+</ul>
+<p>##3.jstack<br>    作用：查看java程序的线程运行情况<br>    用法：jstack [选项] pid<br>    常用：jstack pid<br>        注意：如果java程序是在tomcat用户下启动的，一定必须在对应的tomcat用户下执行该命令</p>
+<pre><code>[root@wangxu-180 bin]# jps
+7879 Jps
+21371 
+[root@wangxu-180 bin]# su - tomcat --shell=/bin/bash -c &#39;jstack 21371&#39; 2&gt;/dev/null &gt;/home/wangxu/java.txt
+</code></pre>
+<p>##4.jps<br>    查看jvm进程的pid</p>
+<p>##5.jinfo<br>    [root@iauth01 wangxu]# jps<br>    9810<br>    11400 Jps<br>    [root@iauth01 wangxu]# jinfo -flags  9810<br>    Attaching to process ID 9810, please wait…<br>    Debugger attached successfully.<br>    Server compiler detected.<br>    JVM version is 25.77-b03<br>    Non-default VM flags: -XX:CICompilerCount&#x3D;2 -XX:InitialHeapSize&#x3D;1006632960 -XX:MaxHeapSize&#x3D;1006632960 -XX:MaxMetaspaceSize&#x3D;230686720 -XX:MaxNewSize&#x3D;335544320 -XX:MetaspaceSize&#x3D;230686720 -XX:MinHeapDeltaBytes&#x3D;524288 -XX:NewSize&#x3D;335544320 -XX:OldSize&#x3D;671088640 -XX:SurvivorRatio&#x3D;8 -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseParallelGC<br>    Command line:  -Djava.util.logging.config.file&#x3D;&#x2F;usr&#x2F;local&#x2F;apache-tomcat-7.0.73&#x2F;conf&#x2F;logging.properties -Xmx960m -Xms960m -XX:NewSize&#x3D;320m -XX:MaxNewSize&#x3D;320m -XX:SurvivorRatio&#x3D;8 -XX:MetaspaceSize&#x3D;220m -XX:MaxMetaspaceSize&#x3D;220m -Djava.util.logging.manager&#x3D;org.apache.juli.ClassLoaderLogManager -javaagent:&#x2F;usr&#x2F;local&#x2F;apache-tomcat-7.0.73&#x2F;tingyun&#x2F;tingyun-agent-java.jar -Djava.endorsed.dirs&#x3D; -Dcatalina.base&#x3D;&#x2F;usr&#x2F;local&#x2F;apache-tomcat-7.0.73 -Dcatalina.home&#x3D;&#x2F;usr&#x2F;local&#x2F;apache-tomcat-7.0.73 -Djava.io.tmpdir&#x3D;&#x2F;usr&#x2F;local&#x2F;apache-tomcat-7.0.73&#x2F;temp -Dcommons.daemon.process.id&#x3D;9810 -Dcommons.daemon.process.parent&#x3D;9809 -Dcommons.daemon.version&#x3D;1.0.15-dev abort</p>
+
+      
+		<!-- 增加版权声明 -->
+		<!- 百度自动推送方式提交 -->
+		
+		  <script>
+		  (function(){
+			  var bp = document.createElement('script');
+			  var curProtocol = window.location.protocol.split(':')[0];
+			  if (curProtocol === 'https') {
+				  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+			  }
+			  else {
+				  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+			  }
+			  var s = document.getElementsByTagName("script")[0];
+			  s.parentNode.insertBefore(bp, s);
+		  })();
+		  </script>
+		
+		<!- 百度自动推送方式提交结束 -->
+		
+		
+		  <div class="declare" hidden="hidden"></div>
+		
+
+		<!-- 增加版权声明结束 -->
+		
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/31/jvm-performance-review/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-jvm-collection" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/31/jvm-collection/">JVM内存垃圾回收</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/31/jvm-collection/" class="archive-article-date">
+  	<time datetime="2023-12-31T09:56:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-31</time>
+</a>
+
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  字数统计:</span>
+        <!--这里样式可以自己定制-->
+        <span class="post-count" style="font-size: 14px;color: grey">2.5k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  阅读时长:</span>
+        <span class="post-count" style="font-size: 14px;color: grey">9分钟</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+
+        
+
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#JVM内存垃圾回收</p>
+<p>##1.jvm垃圾收集算法</p>
+<ul>
+<li><p>1.引用计算算法（jdk1.2之前）</p>
+<pre><code>  每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。此方法简单，无法解决对象相互循环引用的问题。还有一个问题是如何解决精准计数。
+</code></pre>
+</li>
+<li><p>2.根搜索算法</p>
+<pre><code>  从GC Roots开始向下搜索
+</code></pre>
+</li>
+</ul>
+<p>，搜索所走过的路径成为引用链。当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可用的，不可达对象</p>
+<pre><code>    在java语言中，GC Roots包括:
+    虚拟机栈中引用的对象(最常用)
+    方法区中类静态熟性实体引用的对象(很少用)
+    方法区中常量引用的对象(很少用)
+    本地方法栈中JNI引用的对象
+</code></pre>
+<p>##2.jvm垃圾回收算法</p>
+<ul>
+<li><p>1、复制算法(copying)</p>
+<pre><code>  1.复制算法采用从根集合扫描，并将存活对象复制到一块新的，没有使用过的空间中，这种算法当控件存活的对象比较少时，极为高效，但是带来的成本是需要一块内存交换空间，用于进行对象的移动
+  2.此算法用于新生代内存回收，从E区回收到S0或者S1	
+</code></pre>
+</li>
+<li><p>2、标记清除算法(Mark-Sweep)</p>
+<pre><code>  1.标记-清除算法采用从根集合进行扫描，对存活的对象进行标记，标记完毕后，再扫描整个空间中未被标记的对象，进行回收，如何所示；
+  2.标记-清除算法不需要进行对象的移动，并且仅对不存活的对象进行处理，在存活对象比较多的情况下极为高效（使用于老年代），但由于标记-清除算法直接回收不存活的对象，因
+</code></pre>
+</li>
+</ul>
+<p>此会造成内存碎片！</p>
+<ul>
+<li><p>3、标记整理算法(Mark-Compac)</p>
+<pre><code>  标记-整理算法采用标记-清除算法一样的方式进行标记，但是清除的时候不同，在回收不存活的对象占用的空间后，会将所有的存活对象往左端空闲空间移动，并更新对应的指针。标记-整理算法在标记-清除算法的基础上，又进行了对象的移动，因此成本很高，但却解决了内存碎片的问题。
+</code></pre>
+</li>
+</ul>
+<p>##3.相关的名词解释</p>
+<ul>
+<li><p>1 串行回收</p>
+<pre><code>  gc单线程内存回收，会暂停所有用户线程
+</code></pre>
+</li>
+<li><p>2 并行回收</p>
+<pre><code>   收集是指多个GC线程并行工作，但此时用户线程是暂停的；所以serial是串行的，parallel收集器是并行的，而CMS收集器是并发的
+  
+</code></pre>
+</li>
+<li><p>3 并发回收</p>
+<pre><code>  是指用户线程与GC线程是同时执行(不一定是并行，可能交替，但总体是在同时执行的)，不需要停顿用户线程(其实在CMS中用户线程还是需要停顿的，只是非常短，GC线程在另一个CPU上执行)
+</code></pre>
+</li>
+</ul>
+<p>##3.1 serial回收器(串行回收器)</p>
+<pre><code>1.是一个单线程的收集器，只能使用一个CPU或一条线程去完成垃圾收集；在进行垃圾收集时，必须暂停所有其他的工作线程，直到收集完成。
+2.缺点：stop the world
+3.优势：简单。但对于CPU的情况，由于没有多线程的互相开销，反而可以更高效，是client模式下默认的新生代收集器
+    
+新生代Serial回收器
+1.-XX:+UseSerialGC来开启
+Serial New + Serial Old的收集器组合进行内存回收
+2.使用复制算法
+3.独占式的垃圾回收
+    一个线程进行GC、串行。其他的工作线程暂停
+    
+老年代Serial回收器
+1.-XX:+UseSerialGC来开启
+Serial New + Serial Old的收集器组合进行内存回收
+2.使用标记-压缩算法
+3.串行的、独占式的垃圾回收器
+因为内存比较大的原因，回收比新生代慢
+</code></pre>
+<p>##3.2 ParNew 回收器(并行回收器)<br>    并行回收器也是独占式的回收器，在收集过程中，应用程序会全部暂停。但由于并行回收器使用多线程进行垃圾回收，因此，在并发能力比较强的CPU上，它产生的停顿时间要短于串行回收器，而在单CPU或者并发能力较弱的系统中，并行回收器的效果不会比串行回收器好，由于多线程的压力，它的实际表现很可能比串行回收器差	</p>
+<pre><code>新生代ParNew回收器
+1.-XX:+UseParNewGC开启
+    新生代使用并行回收收集器，老年代使用串行收集器
+2.-XX:ParallelGCThreads指导线程数
+    默认最好与CPU数量相当，避免过多的线程数影响垃圾回性能
+3.使用复制算法
+4.并行的、独占式的垃圾回收器
+
+新生代ParNew Scavenge回收器
+1.吞吐量优先回收器
+关注CPU吞吐量，即运行用户代码的时间/总时间，比如:JVM运行100分钟，其中运行用户代码99分钟，垃圾回收1分钟，则吞吐量99%，这种收集器能最高效率的利用CPU，适合后台运算
+2.-XX:+UseParallelGC开启
+使用Parallel Scavenge+Serial Old收集器组合回收垃圾，这也是在Server模式下的默认值
+3.-XX:GCTimeRatio
+来设置用户执行时间占总时间的比例，默认是99，即1%的时间用来垃圾回收
+4.-XX:MaxGCPauseMilis
+设置GC最大的停顿时间
+5.使用复制算法
+
+老生代ParNew Old回收器
+1.-XX:+UseParallelOldGC开启
+使用Parallel Scavenge+Serial Old组合收集器进行收集
+2.使用标记整理算法
+3.并行的、独占时的垃圾回收器
+</code></pre>
+<p>##3.3 CMS 回收器(并发标记清除)</p>
+<pre><code>CMS(并发标记清除)回收器
+运行过程分为4个阶段:
+ 初始阶段(CMS initial mark)：值标记GC Roots能直接关联的对象
+ 并发标记(CMS concurrent mark)：进行 GC Roots Tracing的过程
+ 重新标记(CMS remark)：修正并发标记期间因用户继续运行而导致标记发生改变的那一部分对象的标记
+ 并发清除(CMS concurrent sweep)：
+期中标记和重新标记两个阶段仍然需要stop-the-world，整个过程中耗时最长的并发标记和并发清除过程中收集器都可以和用户线程一起工作
+</code></pre>
+<ul>
+<li><p>1、标记-清除算法</p>
+<pre><code>  同时它是一个使用多线程并发回收的垃圾回收器
+</code></pre>
+</li>
+<li><p>2、-XX:ParallelCMSThreads</p>
+<pre><code>  手工设定CMS的线程数量，CMS默认启动的线程数是(ParallelGCThreads+3)/4
+</code></pre>
+</li>
+<li><p>3、-XX:+UseConcMarkSweepGC开启</p>
+<pre><code>  使用ParNew+CMS+ Serial Old的收集器组合进行内存回收，Serial Old作为CMS出现&quot;Concurrent Mode Failure&quot;失败后的后备收集器使用
+</code></pre>
+</li>
+<li><p>4、-XX:CMSInitiatingOccupancyFration</p>
+<pre><code>  设置CMS收集器在老年代空间被使用多少后出发垃圾收集，默认值是68%，仅在CMS收集器有效，-XX:CMSInitiatingOccupancyFration=70
+</code></pre>
+</li>
+<li><p>5、-XX:+UseCMSCompactAtFullCollection</p>
+<pre><code>  由于CMS收集器会产生碎片，此参数设置在垃圾回收器后是否需要一次内存碎片整理过程，仅在CMS收集器时有效。
+</code></pre>
+</li>
+<li><p>6、-XX:+CMSFullGCBeforeCompaction</p>
+<pre><code>  设置CMS收集器在进行若干次垃圾收集后再进行一次内存碎片整理过程，通常与UseCMSCompactAtFullCollection参数一起使用
+</code></pre>
+</li>
+<li><p>7、-XX:CMSInitiatingPermOccupancyFration（你不建议设置）</p>
+<pre><code>  设置Perm Gen使用到达多少比率时触发，默认92s
+</code></pre>
+</li>
+</ul>
+<p>##3.4 GC性能指标</p>
+<ul>
+<li>吞吐量  应用花在非GC上的时间百分比</li>
+<li>GC负荷  与吞吐量相反，指应用花在GC上的时间比</li>
+<li>暂停时间 应用花在GC stop-the-world的时间</li>
+<li>GC频率  顾名思义</li>
+<li>反应速度 从一个对象变成垃圾到这个对象被回收的时间</li>
+<li>一个交互式的应用要求暂停时间越少越好，然而，一个非交互性的应用，当然是希望GC负荷越低越好</li>
+<li>一个实时系统对暂停时间和GC负荷的要求，都是越低越好</li>
+</ul>
+<p>##4.内存容量配置原则</p>
+<p>###4.1 年轻代大小选择</p>
+<pre><code>响应时间优先的应用：尽可能设大，直到接近系统的最低响应时间设置(根据实际情况选择)，在此种情况下，年轻代收集发送的频率也是最小的。同时，减少到达年老代的对象
+
+吞吐量优先的应用：尽可能的设置大，可能到达Gbit的程度，因为对响应时间没有要求，垃圾回收可以并行进行，一般适合8CPU以上的应用
+
+避免设置过小，当新声代设置过小时会导致：1YGC次数更加频繁 2.可能导致YGC对象直接进入旧生代，会出发fullGC
+</code></pre>
+<p>###4.2 年老代大小选择</p>
+<pre><code>响应时间优先的应用：年轻代使用并发收集器，所以其大小需要小心设置，一般要考虑并发会话频率和会话持续时间等一些参数，如果堆设置小了。可以造成会话碎片，高回收频率以及应用暂停而使用传统的标记清除的方式;如果堆大了，则需要较长的收集时间，最优化的方案，一般需要参考一下数据获得：
+
+并发垃圾收集信息、持久代并发收集次数、传统GC信息、花在年轻代和年老代回收的时间比例
+吞吐量优先的应用：一般吞吐量的应用都有一个很大的年轻代和一个较小的老年代。原因是：这样可以尽可能回收掉大部分短期对象，减少中期的对象，而老年代尽存放长期存活的对象
+</code></pre>
+
+      
+		<!-- 增加版权声明 -->
+		<!- 百度自动推送方式提交 -->
+		
+		  <script>
+		  (function(){
+			  var bp = document.createElement('script');
+			  var curProtocol = window.location.protocol.split(':')[0];
+			  if (curProtocol === 'https') {
+				  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+			  }
+			  else {
+				  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+			  }
+			  var s = document.getElementsByTagName("script")[0];
+			  s.parentNode.insertBefore(bp, s);
+		  })();
+		  </script>
+		
+		<!- 百度自动推送方式提交结束 -->
+		
+		
+		  <div class="declare" hidden="hidden"></div>
+		
+
+		<!-- 增加版权声明结束 -->
+		
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/31/jvm-collection/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-jvm-memory-allocation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/31/jvm-memory-allocation/">JVM内存分配</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/31/jvm-memory-allocation/" class="archive-article-date">
+  	<time datetime="2023-12-31T09:55:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-31</time>
+</a>
+
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  字数统计:</span>
+        <!--这里样式可以自己定制-->
+        <span class="post-count" style="font-size: 14px;color: grey">956字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text" style="font-size: 14px;color: grey">  阅读时长:</span>
+        <span class="post-count" style="font-size: 14px;color: grey">3分钟</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+
+        
+
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#JVM内存分配</p>
+<h2 id="1-JVM内存分配"><a href="#1-JVM内存分配" class="headerlink" title="1.JVM内存分配"></a>1.JVM内存分配</h2><p>###1.1 栈内存分配</p>
+<ul>
+<li>保存参数、局部变量、中间计算过程和其他数据。退出方法的时候，修改栈顶指针就可以把栈帧的内容销毁</li>
+<li>栈的优点：存取速度比堆快，仅次于寄存器，栈数据可以共享</li>
+<li>栈的缺点：存在栈中的数据大小、生存周期是在编译的时候指定的，导致其缺乏灵活性</li>
+</ul>
+<p>###1.1 堆内存分配</p>
+<ul>
+<li>堆的优点：动态地分配内存大小，生存期不必事先告诉编辑器，它是在运行期动态分配的，垃圾回收会自动的收走不再使用的空间区域</li>
+<li>堆的缺点：运行时动态分配内存，在分配和销毁时都需要占用时间，因此堆的效率比较低</li>
+</ul>
+<h2 id="2-JVM堆结构"><a href="#2-JVM堆结构" class="headerlink" title="2.JVM堆结构"></a>2.JVM堆结构</h2><p>年轻代（Eden Survivor(from + to) ）<br>老年代（）<br>metadata（）</p>
+<h3 id="为什么java这么分区？"><a href="#为什么java这么分区？" class="headerlink" title="为什么java这么分区？"></a>为什么java这么分区？</h3><h2 id="3-JVM堆结构和垃圾回收"><a href="#3-JVM堆结构和垃圾回收" class="headerlink" title="3.JVM堆结构和垃圾回收"></a>3.JVM堆结构和垃圾回收</h2><p>stop the world…<br>垃圾回收过程中是不会工作的~</p>
+<h2 id="4-JVM堆配置参数"><a href="#4-JVM堆配置参数" class="headerlink" title="4.JVM堆配置参数"></a>4.JVM堆配置参数</h2><ul>
+<li><p>-Xms 初始堆大小</p>
+<pre><code>  默认物理内存的1/64(&lt;1G)
+</code></pre>
+</li>
+<li><p>-Xmx 最大堆大小</p>
+<pre><code>  默认物理内存的1/4(&lt;1G),实际中建议不大于4GB
+</code></pre>
+</li>
+<li><p>一般建议设置 -Xms&#x3D; -Xmx</p>
+<pre><code>  好处是避免每次gc后，调整堆的大小，避免动态伸缩，减少系统的内存分配开销
+
+  内存泄露和内存溢出：
+  内存泄露也有可能是代码问题，也有可能是物理内存大小；
+</code></pre>
+</li>
+<li><p>整个堆的大小&#x3D;年轻代大小+年老代大小+metadata</p>
+</li>
+</ul>
+<h2 id="4-JVM新生代-young-generation"><a href="#4-JVM新生代-young-generation" class="headerlink" title="4.JVM新生代(young generation)"></a>4.JVM新生代(young generation)</h2><ul>
+<li><p>1、新生代&#x3D;1个eden区+2个survivor区</p>
+</li>
+<li><p>2、-Xmn 新生代大小(1.4版本或以后~)</p>
+<pre><code>  默认值大小为整个堆的3/8
+</code></pre>
+</li>
+<li><p>3、 -XX：NewRatio<br>  年轻代(包括Eden和两个Survivor区)与年老代的比值(除去代)<br>  Xms&#x3D;Xmx并且设置了Xmn的情况下，该参数不需要设置</p>
+</li>
+<li><p>4、-XX:SurvivorRatio</p>
+<pre><code>  E区和Survivor区的大小比值，设置为8，则两个Survivor区与一个Eden区的比值为2:8，一个Survivor区占整个年轻代的1/10
+</code></pre>
+</li>
+<li><p>5、 作用：用来存储JVM新分配的java对象</p>
+</li>
+</ul>
+<h2 id="5-JVM老年代-tenured-generation"><a href="#5-JVM老年代-tenured-generation" class="headerlink" title="5.JVM老年代(tenured generation)"></a>5.JVM老年代(tenured generation)</h2><ul>
+<li><p>1、老年代&#x3D;整个堆-年轻代大小-持久代大小</p>
+</li>
+<li><p>2、年轻代中经过垃圾回收没有被回收掉的对象，被复制到老年代</p>
+</li>
+<li><p>3、老年代存储对象比年轻代年龄大的多，而且不乏大对象</p>
+</li>
+<li><p>4、新建的对象也有可能直接进入老年代</p>
+<pre><code>  1.大对象，可通过启动设置参数-XX:PretenureSizeThreshold=1024(单位为字节，默认为0)来代表超过多大时就不在新生代分配，而是直接在老年代分配
+  2.大的数组对象，且数组中无引用外部对象
+</code></pre>
+</li>
+<li><p>5、老年代大小无配置参数</p>
+</li>
+</ul>
+<h2 id="6-JVM持久代-perm-generation"><a href="#6-JVM持久代-perm-generation" class="headerlink" title="6.JVM持久代(perm generation)"></a>6.JVM持久代(perm generation)</h2><ul>
+<li><p>1、持久代&#x3D;整个堆-年轻代大小-年老代大小</p>
+</li>
+<li><p>2、-XX:PermSize -XX:MaxPermSize</p>
+<pre><code>  设置持久代的大小，一般情况推荐把-XX:PermSize设置成-XX：MaxPermSize的值为相同的值。因为永久代大小的调整会导致内存需要触发fullgc
+</code></pre>
+</li>
+<li><p>3、存放class、method元信息，其大小与项目的规模、类、方法的数量有关。一般设置为128M就足够，设置原则是预留空间的30%</p>
+</li>
+<li><p>4、持久代的回收方式<br>  1.常量池中的常量，无用的类信息，常量的回收很简单，没有引用了就可以被回收<br>  2.对于无用的类进行回收，必须保证3点：<br>      类的所有实例都已经被回收<br>      加载类的classloader已经被回收<br>      类对象的class对象没有被引用(即没有提供反射引用该类的地方)</p>
+</li>
+</ul>
+
+      
+		<!-- 增加版权声明 -->
+		<!- 百度自动推送方式提交 -->
+		
+		  <script>
+		  (function(){
+			  var bp = document.createElement('script');
+			  var curProtocol = window.location.protocol.split(':')[0];
+			  if (curProtocol === 'https') {
+				  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+			  }
+			  else {
+				  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+			  }
+			  var s = document.getElementsByTagName("script")[0];
+			  s.parentNode.insertBefore(bp, s);
+		  })();
+		  </script>
+		
+		<!- 百度自动推送方式提交结束 -->
+		
+		
+		  <div class="declare" hidden="hidden"></div>
+		
+
+		<!-- 增加版权声明结束 -->
+		
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/31/jvm-memory-allocation/">展开全文 >></a>
         </p>
       
 
